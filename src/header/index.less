@@ -1,0 +1,65 @@
+@import '../const/index.less';
+
+@transition-duration: 0.5s;
+
+
+.@{clsPrefix}-header-announcement-fixed {
+  display: flex;
+  // background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
+  height: 64px;
+  text-align: center;
+  line-height: 64px;
+  background-color: rgba(17, 17, 17, .75);
+  justify-content: space-around;
+  align-items: center;
+  color:#ccc;
+  font-size: 17px;
+  letter-spacing: 2px;
+  .@{clsPrefix}-header-logo {
+    width: 32px;
+    height: 32px;
+    background-image: url('../asset/heimiao.png');
+    background-position: center center;
+    background-size: cover;
+    display: inline-block;
+    border-radius: 10px;
+  }
+}
+.@{clsPrefix}-header-announcement-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 15px;
+}
+.@{clsPrefix}-header-announcement {
+  opacity: 0;
+  transform: translateY(-100%);  // 元素从顶部滑出
+  transition: opacity @transition-duration ease, transform @transition-duration ease;
+  background-image: url('../asset/announce_bg.jpg');
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  padding: 0 20px;
+  min-height: 400px;
+  max-width: 1000px;
+  margin: 0 auto;
+  .ant-collapse-header-text {
+    // 重写一下antd下字体颜色
+    color: #f4f4f4;
+  }
+  p {
+    color: #f4f4f4;
+  }
+}
+/* 向下滑入 */
+.slide-down {
+  opacity: 1;
+  transform: translateY(0);  // 元素完全显示
+}
+
+/* 向上滑出 */
+.slide-up {
+  opacity: 0;
+  transform: translateY(-200%);  // 元素上移并滑出
+}

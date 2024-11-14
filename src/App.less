@@ -1,0 +1,58 @@
+@import './const/index.less';
+
+video {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+@media (max-width: 1120px) {
+  .@{clsPrefix}-container {
+    flex-direction: column !important;
+    height: 100% !important;
+    align-items: center;
+    .@{clsPrefix}-server {
+      margin-bottom: 20px;
+    }
+  }
+  .@{clsPrefix}-layout {
+    height: 100% !important;
+  }
+  .@{clsPrefix}-server {
+    width: 100%;
+    max-width: 700px;
+  }
+  .@{clsPrefix}-rank-tab {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+.@{clsPrefix}-layout {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  .@{clsPrefix}-header {
+    height: 64px;
+    background-color: transparent;
+    z-index: 10;
+    padding: 0;
+  }
+  .@{clsPrefix}-container {
+    background-color: transparent;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .@{clsPrefix}-footer {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+}
+

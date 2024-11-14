@@ -1,0 +1,64 @@
+@import '../const/index.less';
+
+.@{clsPrefix}-server-list-content {
+  background-color: transparent;
+  @media (max-width: 600px) {
+    .ant-collapse-item {
+      min-height: 56px;
+    }
+  }
+  .ant-collapse-header:hover {
+    background-color: rgba(150, 150, 150, 0.18);
+  }
+}
+
+@media (max-width: 600px) {
+  .@{clsPrefix}-server-list-header {
+    flex-wrap: wrap;
+  }
+}
+
+.@{clsPrefix}-server-list-header {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #ccc;
+  &-search {
+    width: 280px;
+    .ant-input-affix-wrapper {
+      background-color: hsla(0, 0%, 100%, .22);
+      opacity: 0.85;
+      input {
+        caret-color: #ccc;
+        color: #ccc;
+      }
+      input::placeholder {
+        color: #ccc;
+        font-size: 13px;
+      }
+    }
+    .ant-btn {
+      background-color: hsla(0, 0%, 100%, .22) !important;
+      svg {
+        color: white;
+      }
+    }
+  }
+  &>span {
+    font-size: 14px;
+    margin: 0 10px;
+    white-space: nowrap;
+  }
+  button {
+    background: rgb(26, 26, 26);
+    color: #f4d8a8;
+    font-size: 13px;
+    margin-right: 10px;
+  }
+  button:hover {
+    background-color: rgb(80, 80, 80) !important;
+    color: #f4d8a8;
+  }
+}
+

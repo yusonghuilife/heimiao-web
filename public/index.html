@@ -2,42 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>查看￦黑喵服务器状态</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
+  <script>
+    (function flexible(window, document) {
+  var docEl = document.documentElement;
+  var dpr = window.devicePixelRatio || 1;
+
+  // 调整 body 字体大小
+  function setBodyFontSize() {
+    if (document.body) {
+      // body 字体大小默认为 16px
+      document.body.style.fontSize = 16 * dpr + "px";
+    } else {
+      document.addEventListener("DOMContentLoaded", setBodyFontSize);
+    }
+  }
+  setBodyFontSize();
+
+  // 移动端默认平均分成 10 等分(适用移动端)
+  // pc端默认平均分成 24 等分（适用 pc 端）
+  function setRemUnit() {
+    var splitNum = /Mobi|Android|iPhone/i.test(navigator.userAgent) ? 10 : 24;
+    var rem = docEl.clientWidth / splitNum; // 1920 / 24 = 80
+    docEl.style.fontSize = rem + "px"; // 设置 html 字体的大小 80px
+  }
+
+  setRemUnit();
+
+  // 页面调整大小时重置 rem 单位
+  window.addEventListener("resize", setRemUnit);
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) {
+      setRemUnit();
+    }
+  });
+
+  // 检测 0.5px 支持
+  if (dpr >= 2) {
+    var fakeBody = document.createElement("body");
+    var testElement = document.createElement("div");
+    testElement.style.border = ".5px solid transparent";
+    fakeBody.appendChild(testElement);
+    docEl.appendChild(fakeBody);
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add("hairlines");
+    }
+    docEl.removeChild(fakeBody);
+  }
+})(window, document);
+
+  </script>
 </html>

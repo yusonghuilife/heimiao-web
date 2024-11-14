@@ -1,0 +1,63 @@
+@import '../const/index.less';
+
+@--color-players-full: #e16c96;
+@--color-players-half: #fcd337;
+@--color-players-less: #66c18c;
+
+.@{clsPrefix}-server-list-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  .full {
+    color: @--color-players-full;
+  }
+  .half {
+    color: @--color-players-half;
+  }
+  .less {
+    color: @--color-players-less;
+  }
+
+  .@{clsPrefix}-server-name {
+    white-space: nowrap;
+  }
+
+  .@{clsPrefix}-server-players {
+    text-align: center;
+    width: 40px;
+  }
+
+  .@{clsPrefix}-server-map {
+    max-width: 200px;
+    padding: 0 5px;
+    display: flex;
+    &-name {
+      font-size: 15px;
+      span {
+        font-size: 13px !important;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .@{clsPrefix}-server-join {
+      display: none;
+    }
+  }
+
+  .@{clsPrefix}-server-join {
+    margin-left: auto;
+    button {
+      // background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+      background-color: #2d2f33;
+      color: #f4d8a8;
+      font-size: 13px;
+      &:hover {
+        background-color: #2d2f33 !important;
+        color: #f4d8a8 !important;
+        font-size: 13px;
+      }
+    }
+  }
+}

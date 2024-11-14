@@ -1,0 +1,90 @@
+@import '../const/index.less';
+
+.@{clsPrefix}-rank-tab {
+  overflow-y: scroll;
+  max-height: 658px;
+  max-width: 440px;
+   &::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(26, 26, 26);
+    box-shadow : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    background : #fdf2e0;
+    opacity: 0.5;
+  }
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  opacity: 0.85;
+  padding: 0 10px;
+  .ant-tabs-nav::before {
+    display: none !important;
+  }
+  .ant-tabs-nav {
+    margin: 0 0 8px 0 !important;
+    .ant-tabs-nav-list {
+      padding: 0 10px;
+    }
+  }
+  .ant-tabs-nav-operations {
+    button {
+      color: #b9988a !important;
+    }
+  }
+  .ant-tabs-tab {
+    padding: 8px 0 !important;
+  }
+  .ant-tabs-tab .ant-tabs-tab-btn {
+    color: #b9988a !important;
+  }
+  .ant-tabs-tab.ant-tabs-tab-active {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAAAPCAYAAABKrvnUAAACjklEQVRYR82YX2vTUBjGnzeNbWmLCoXNK/0U3vgBnExxqFD/XEw2qTAmxdV2Xoisg3mzrNUVpKtDBwrT9a4W/974BfY1BKco1q3r1iXnlRNbSbPUDWab5Cp5z8l5n/PLefKehADguaaFj0SQlufVDWjD6XStLc6Yktf/+RAgWoGqTgzFb6+VFx/0K4b/mRA4A0Cx5RKKgvfC1xgdit9bKy8+6oeuPwTzZYe+B5dJmHbkYOFDJrQQ0kRIyYzMmKtuQpPnrTgD4YOrcRzBAFFJFSJ5dnzyiwlPD2TFHyBq8w5dIVoR6vYdCe3N49ljuqLkwBwD4OuGLgJqThysfKhc0DLESLXgmDcR5mQna7wbAptjCgI++phHJLwPBa2vAcoJ5quyXSF66QcnB8bSXyU0g2iJgdNdWWmWSXbi0Ip7AZyU62hbs6FX9rStjD3BuWxVq9xdtpWNvbKnVci+rOpicXByf5ttZYde2vOvoP0Uhy6+u/459OtC9hyzeAqgz15BW9XWjHeongzs+IjeRaPHr5yKxeq9ngf1OmEr32qxeOizsX4N4CyAqE2HaVsz5lQ9CQ0CLasB/+TgaOKbG3NwDZycbKmU8Qd/RC4x4wWY7VsL0QRi39OBoCzr4UDi4vVb392AZu443EpszVtZyA4LIeYBHN1DzzYIr85HT9ygWMxwU7snwL3N5wO6unUTUGYYfLgDkC0i5YkRVKYujEz8dBOaZ1acFPJpKRNcr0fiIMwz864HSoS8uhO4P5hI/HIbmqfAtWBUFrJJIXga4EgztgmiwtBYyvwk9MrhCau2ve+KmZAwIkkAdwlMRMjVRW02Np7Z8Ao0T644KapSLIaYaiflV76vaqwONP/WeAncb01rX0v82CIbAAAAAElFTkSuQmCC) no-repeat center bottom;
+    background-size: 42px 5px;
+  }
+  .ant-table-cell-row-hover {
+    background-color: transparent !important; 
+  }
+  table {
+    font-size: 14px !important;
+    color: #ccc !important;
+    .ant-table-thead >tr>th {
+      color: #ccc !important;
+      background: transparent !important;
+      opacity: 0.85;
+    }
+    .ant-table-tbody >tr >td {
+      border: none !important;
+    }
+  }
+  .ant-table {
+    background: transparent !important;
+    border: 1px solid #f4d8a8;
+  }
+  .ant-pagination {
+    color: #f4d8a8 !important;
+    li {
+      background-color: transparent;
+      button, a, span {
+        color: #f4d8a8 !important;
+      }
+    }
+  }
+}
+
+
+.ant-tabs-dropdown {
+  ul {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    li {
+      color: #b9988a !important;
+    }
+  }
+  .ant-tabs-dropdown-menu {
+    max-height: 400px;
+  }
+}
