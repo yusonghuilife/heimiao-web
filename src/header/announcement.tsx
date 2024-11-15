@@ -1,43 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { Children, ReactElement, useEffect, useState } from 'react';
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
 import BellList from '../asset/bell.png';
 import { CustomIcon } from '../component/icon';
 import axios from 'axios';
 
-const text = '';
 
-const items: CollapseProps['items'] = [
+const defaultItems: CollapseProps['items'] = [
   {
     key: '1',
-    label: '2024/11/12 更新公告',
-    children: <p>{text}</p>,
+    label: '1',
+    children: <p></p>,
   },
   {
     key: '2',
-    label: '2024/11/11 更新公告',
-    children: <p>{text}</p>,
+    label: '2',
+    children: <p></p>,
   },
   {
     key: '3',
-    label: '2024/11/10 更新公告',
-    children: <p>{text}</p>,
+    label: '3',
+    children: <p></p>,
   },
 ];
 
 const Announcement: React.FC = () => {
-  // useEffect(() => {
-  //   axios.get('/api/info/changelog').then(res => {
-
-  //   })
-  //   .catch(e => console.error(e))
-  //   .finally(() => {
-
-  //   });
-  // }, []);
+  const [noticeItems, setNoticeItems] = useState(defaultItems);
+  useEffect(() => {
+    axios.get('/api/info/changelog').then(res => {
+      setNoticeItems(res.data.body.map((notice: { title: string; content: string[] }, index: number) => ({
+        key: index + 1,
+        label: notice.title,
+        children: <pre>{notice.content.join('\n')}</pre>,
+      })));
+    })
+    .catch(e => console.error(e))
+  }, []);
   return (
     <Collapse
-      items={items}
+      items={noticeItems}
       defaultActiveKey={['1', '2', '3']}
       expandIcon={() => <CustomIcon src={BellList}/>}
       ghost

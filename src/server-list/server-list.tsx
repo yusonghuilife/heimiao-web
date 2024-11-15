@@ -38,7 +38,8 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
 
   const fetchServerList = useCallback(() => {
     setButtonLoading(true);
-    axios.get('/api/all').then((serverData) => {
+    axios.get('/api/all')
+    .then((serverData) => {
       const { result } = serverData.data.body;
       const serverList: IServerInfo['server'][] = [];
       const playersList: IServerInfo['players'][] = [];
@@ -97,7 +98,7 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
     }
 
     // 防止数据没拉回来之前做筛选不进入更新逻辑
-  }, [activeTab, isLoading]);
+  }, [activeTab, isLoading, buttonLoading]);
 
   // @ts-ignore
   const searchResult = useCallback((value, event, info) => {

@@ -11,7 +11,7 @@ export interface IRankTableProps {
   columns: TableColumnsType<DataType>
 }
 
-export const defaultPageSize = 13;
+export const defaultPageSize = 20;
 
 const fetchRankList = (rankType: IRankType, start: number, end: number) => {
   return axios.get(`/api/top/${rankType}?begin=${start}&end=${end}`)
@@ -25,7 +25,8 @@ const RankTable: React.FC<IRankTableProps> = (props: IRankTableProps) => {
   const requestAndUpdateTable = useCallback((params: { start: number, end: number }) => {
     const { start, end } = params;
     setLoading(true);
-    fetchRankList(rankType, start, end).then((serverData) => {
+    fetchRankList(rankType, start, end)
+    .then((serverData) => {
       let rank = start;
       const { body } = serverData.data;
       body.map((user: DataType) => user.key = user.rank = ++rank);
@@ -61,7 +62,7 @@ const RankTable: React.FC<IRankTableProps> = (props: IRankTableProps) => {
         pagination={{ 
           defaultCurrent: 1,
           position: ['bottomCenter'],
-          total: 130,
+          total: defaultPageSize * 10,
           pageSize: defaultPageSize,
           showSizeChanger: false,
         }}

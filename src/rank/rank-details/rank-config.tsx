@@ -1,4 +1,4 @@
-import { TableColumnsType } from "antd";
+import { TableColumnsType, Tooltip } from "antd";
 
 import Love from '../../asset/love'
 export interface ITotalDataType {
@@ -216,7 +216,12 @@ export const totalColumns: TableColumnsType<ITotalDataType> = [
     dataIndex: 'name',
   },
   {
-    title: '总分',
+    title: <Tooltip
+            placement="top"
+            title="经验值 + 特感击杀数 + 普感击杀数"
+            color="rgba(0, 0, 0, 0.6)"
+          >总分
+          </Tooltip>,
     dataIndex: 'total_score',
   }
 ];
@@ -248,11 +253,11 @@ export const rankMapRest = [{
   columns: headShotColumns,
 }, {
   name: 'si_kill',
-  title: '特感击杀榜',
+  title: '特感榜',
   columns: siKillColumns,
 }, {
   name: 'ci_kill',
-  title: '小僵尸击杀榜',
+  title: '丧尸榜',
   columns: ciKillColumns,
 }, {
   name: 'incap',

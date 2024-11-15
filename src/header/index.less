@@ -25,6 +25,31 @@
     border-radius: 10px;
   }
 }
+
+@media (min-width: 1600px) {
+  .@{clsPrefix}-header-announcement-fixed {
+    font-size: 25px;
+  }
+  .@{clsPrefix}-header-announcement-logo {
+    font-size: 20px !important;
+  }
+  .@{clsPrefix}-header-announcement {
+    span {
+      font-size: 22px !important;
+    }
+    pre {
+      font-size: 18px !important;
+    }
+    .ant-collapse-expand-icon {
+      height: 28px !important;
+      img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+    }
+    
+  }
+}
 .@{clsPrefix}-header-announcement-logo {
   display: flex;
   justify-content: center;
@@ -48,7 +73,7 @@
     // 重写一下antd下字体颜色
     color: #f4f4f4;
   }
-  p {
+  pre {
     color: #f4f4f4;
   }
 }

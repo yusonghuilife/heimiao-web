@@ -18,6 +18,25 @@
   }
 }
 
+@media (min-width: 1600px) {
+  .@{clsPrefix}-server-list-header {
+    &-search {
+      .ant-input-affix-wrapper {
+        input::placeholder {
+          color: #ccc;
+          font-size: 18px !important;
+        }
+      }
+    }
+    &>span {
+      font-size: 18px !important;
+    }
+    button {
+      font-size: 18px !important;
+    }
+  }
+}
+
 .@{clsPrefix}-server-list-header {
   margin-left: 15px;
   display: flex;

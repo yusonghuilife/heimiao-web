@@ -59,7 +59,6 @@ export const QueryUserInfo = () => {
         onSearch={searchResult}
         value={inputVal}
         allowClear
-        // disabled={inputVal.length === 0}
       />
       <UserProfile data={userData} />
     </div>

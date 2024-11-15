@@ -4,11 +4,43 @@
 @--color-players-half: #fcd337;
 @--color-players-less: #66c18c;
 
+@media (min-width: 1600px) {
+  .@{clsPrefix}-server-list-item {
+    font-size: 20px !important;
+    .@{clsPrefix}-server-players {
+      margin: 0 20px;
+    }
+    .@{clsPrefix}-server-map {
+      &-name {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+          display: inline-block;
+          height: 30px !important;
+          font-size: 18px !important;
+          line-height: 30px;
+        }
+      }
+    }
+    .@{clsPrefix}-server-join {
+      button > span {
+        font-size: 20px !important;
+        &:hover {
+          font-size: 20px !important;
+        }
+      }
+    }
+  }
+}
+
 .@{clsPrefix}-server-list-item {
   width: 100%;
   display: flex;
   align-items: center;
   color: #ccc;
+  font-size: 14px;
   .full {
     color: @--color-players-full;
   }
@@ -35,7 +67,8 @@
     &-name {
       font-size: 15px;
       span {
-        font-size: 13px !important;
+        font-size: 14px;
+        color: #ffe96d;
       }
     }
   }

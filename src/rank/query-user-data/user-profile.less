@@ -1,22 +1,24 @@
 @import '../../const/index.less';
-// @background-color: #1e1e1e;
 @text-color: #ffffff;
 @badge-color: #3891c5;
-@font-size-base: 14px;
-@font-size-large: 16px;
 @font-weight-bold: bold;
+
+@media (min-width: 1600px) {
+  .@{clsPrefix}-user-card {
+    width: 450px !important;
+    span, div {
+      font-size: 18px;
+    }
+  }
+}
 
 .@{clsPrefix}-user-card {
   position: relative;
   width: 370px;
-  // background-color: @background-color;
-  // color: @text-color;
-  // font-family: Arial, sans-serif;
   padding: 20px;
   margin-top: 10px;
   border-radius: 8px;
   border: 1px solid #f4d8a8;
-  // color: rgba(0, 0, 0, 0.75);
   color: #ccc;
   .header {
     display: flex;
@@ -25,8 +27,14 @@
     align-items: center;
     justify-content: space-around;
 
+    @media (min-width: 1600px) {
+      .username {
+        font-size: 20px !important;
+      }
+    }
+
     .username {
-      font-size: @font-size-large;
+      font-size: 16px;
     }
   }
 

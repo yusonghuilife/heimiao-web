@@ -88,6 +88,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axios": "^1.7.7",
     "eslint": "^8.57.1",
     "less": "^4.2.0",

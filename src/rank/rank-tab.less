@@ -1,4 +1,10 @@
 @import '../const/index.less';
+@media (min-width: 1600px) {
+  .@{clsPrefix}-rank-tab {
+    max-width: 600px !important;
+    max-height: 1040px !important;
+  }
+}
 
 .@{clsPrefix}-rank-tab {
   overflow-y: scroll;
@@ -34,6 +40,10 @@
   .ant-tabs-nav-operations {
     button {
       color: #b9988a !important;
+      svg {
+        width: 25px;
+        height: 25px;
+      }
     }
   }
   .ant-tabs-tab {
@@ -61,6 +71,17 @@
       border: none !important;
     }
   }
+  @media (min-width: 1600px) {
+    table {
+      font-size: 18px !important;
+    }
+    .ant-tabs-tab {
+      font-size: 18px !important;
+    }
+    .ant-pagination {
+      font-size: 18px !important;
+    }
+  }
   .ant-table {
     background: transparent !important;
     border: 1px solid #f4d8a8;
@@ -86,5 +107,13 @@
   }
   .ant-tabs-dropdown-menu {
     max-height: 400px;
+  }
+}
+
+@media (min-width: 1600px) {
+ .ant-tabs-dropdown {
+    li > span {
+      font-size: 18px !important;
+    }
   }
 }

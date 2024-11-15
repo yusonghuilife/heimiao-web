@@ -20,6 +20,29 @@
   align-items: center;
 }
 
+@media (min-width: 1600px) {
+  .@{clsPrefix}-user-data-hint {
+    width: 450px !important;
+  }
+  .@{clsPrefix}-query-user {
+    .ant-input-group-wrapper {
+      width: 450px;
+      input::placeholder {
+        font-size: 18px;
+      }
+    }
+    .ant-collapse-item {
+      .ant-collapse-expand-icon {
+        height: 32px !important;
+      }
+      span {
+        font-size: 18px !important;
+      }
+      font-size: 18px !important;
+    }
+  }
+}
+
 .@{clsPrefix}-rank-tab {
   .ant-input-search-with-button {
     padding: 0 20px;
