@@ -37,7 +37,7 @@ const ServerListItem: React.FC<IServerListItem> = (props: IServerListItem) => {
       </div>
       <div className={`${clsPrefix}-server-map`}>
         <div className={`${clsPrefix}-server-map-name`}>
-          <Tag color={'#a2906e'}>{mapname}</Tag>
+          <Tag color={"#f50"}>{mapname}</Tag>
         </div>
         <div className={`${clsPrefix}-server-map-code`}>{map}</div>
       </div>

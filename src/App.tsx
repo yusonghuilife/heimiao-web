@@ -14,7 +14,7 @@ const { Header, Footer } = Layout;
 function App() {
   return (
     <>
-      <video autoPlay loop muted playsInline>
+      <video autoPlay loop playsInline>
         <source src={BgVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>

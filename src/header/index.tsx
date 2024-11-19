@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { clsPrefix } from "../const";
 import Announcement from "./announcement";
-import { Avatar } from "antd";
+import { Avatar, Badge } from "antd";
 import NotificationLogo from '../asset/notification.png';
 import './index.less';
 
 const Header = () => {
   const [announcementShow, setAnnouncementShow] = useState(false);
+  const [showBadge, setShowBadge] = useState(false);
 
   const handleAnnouncementLogoClick = useCallback(() => {
     setAnnouncementShow((prev) => {
@@ -38,11 +39,13 @@ const Header = () => {
         <span>欢迎来到黑喵服务器</span>
         <div className={`${clsPrefix}-header-announcement-logo`} onClick={handleAnnouncementLogoClick}>
           <span>更新公告</span>
-          <Avatar shape="square" size="small" src={NotificationLogo} />
+          <Badge dot={showBadge}>
+            <Avatar shape="square" size="small" src={NotificationLogo} />
+          </Badge>
         </div>
       </div>
       <div className={`${clsPrefix}-header-announcement ${announcementShow ? 'slide-down' : 'slide-up'}`}>
-        <Announcement />
+        <Announcement setBadgeStatus={setShowBadge} announcementShow={announcementShow} />
       </div>
     </>
   )
