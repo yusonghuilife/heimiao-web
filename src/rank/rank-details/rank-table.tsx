@@ -62,7 +62,7 @@ const RankTable: React.FC<IRankTableProps> = (props: IRankTableProps) => {
         pagination={{ 
           defaultCurrent: 1,
           position: ['bottomCenter'],
-          total: defaultPageSize * 10,
+          total: defaultPageSize * 20,
           pageSize: defaultPageSize,
           showSizeChanger: false,
         }}
