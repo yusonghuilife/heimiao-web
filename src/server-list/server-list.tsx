@@ -62,7 +62,7 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
       setIsLoading(false);
       setButtonLoading(false);
     });
-  }, 2000), []);
+  }, 1500), []);
 
   useEffect(() => {
     fetchServerList();
