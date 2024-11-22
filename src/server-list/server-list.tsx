@@ -5,8 +5,9 @@ import { Button, Collapse, Input, message, Skeleton } from 'antd';
 import axios from 'axios';
 import { clsPrefix } from '../const';
 import dayjs from 'dayjs';
+import { throttle } from 'lodash-es';
 
-import { IResResult, IServerInfo, IServerListItem, IServerListProps } from './interface';
+import { IServerInfo, IServerListProps } from './interface';
 import ServerListItem from './server-list-item';
 import ServerListDetail from './server-list-detail';
 
@@ -36,7 +37,8 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
     playersList,
   });
 
-  const fetchServerList = useCallback(() => {
+  const fetchServerList = useCallback(throttle(() => {
+    console.log('111')
     setButtonLoading(true);
     axios.get('/api/all')
     .then((serverData) => {
@@ -60,7 +62,7 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
       setIsLoading(false);
       setButtonLoading(false);
     });
-  }, []);
+  }, 2000), []);
 
   useEffect(() => {
     fetchServerList();
