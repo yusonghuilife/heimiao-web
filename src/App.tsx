@@ -4,18 +4,29 @@ import HeimiaoHeader from './header';
 import HeimiaoServerList from './server-list';
 import RankTab from './rank/rank-tab';
 import BgVideo from './asset/bg.mp4';
+import BgImg from './asset/bg.png';
+import { useLayoutEffect, useRef } from 'react';
+import { isMobileDevice } from './utils';
+
 import './App.less';
-import { useEffect } from 'react';
 
 
 const { Header, Footer } = Layout;
 
 
 function App() {
+  const sourceRef = useRef<any>(undefined);
+  useLayoutEffect(() => {
+    if (!isMobileDevice()) {
+      if (sourceRef.current) {
+        sourceRef.current.src = BgVideo;
+      }
+    }
+  }, []);
   return (
     <>
-      <video autoPlay loop playsInline>
-        <source src={BgVideo} type="video/mp4" />
+      <video autoPlay loop muted playsInline poster={BgImg}>
+        <source ref={sourceRef} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <Flex gap="middle" wrap>

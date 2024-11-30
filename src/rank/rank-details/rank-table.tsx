@@ -3,8 +3,6 @@ import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import axios from 'axios';
 import { DataType, IRankType } from './rank-config';
-import { clsPrefix } from '../../const';
-// import UserProfile from '../query-personal-data/user-profile';
 
 export interface IRankTableProps {
   rankType: IRankType;

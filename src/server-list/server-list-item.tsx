@@ -1,10 +1,10 @@
 import { Tag, Button } from "antd";
 import { clsPrefix } from "../const";
 import { IServerListItem } from "./interface";
-
-import './server-list-item.less';
 import { useCallback, useMemo } from "react";
 
+import './server-list-item.less';
+import { isMobileDevice } from "../utils";
 
 
 const ServerListItem: React.FC<IServerListItem> = (props: IServerListItem) => {
@@ -35,7 +35,7 @@ const ServerListItem: React.FC<IServerListItem> = (props: IServerListItem) => {
         <span className={`${clsPrefix}-server-separator`}>/</span>
         <span className={`${clsPrefix}-server-max-players`}>{max_players}</span>
       </div>
-      <div className={`${clsPrefix}-server-map`}>
+      <div className={`${clsPrefix}-server-map ${isMobileDevice() ? 'mobile' : ''}`}>
         <div className={`${clsPrefix}-server-map-name`}>
           <Tag color={"#f50"}>{mapname}</Tag>
         </div>

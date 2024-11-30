@@ -377,6 +377,22 @@ module.exports = function (webpackEnv) {
                 },
               },
             },
+            // {
+            //   test: /\.txt$/, // 匹配 .txt 文件
+            //   oneOf: [
+            //     {
+            //       resourceQuery: /raw/, // 如果导入时添加 `?raw`，读取内容
+            //       type: 'asset/source',
+            //     },
+            //     {
+            //       // 默认情况下，将文件独立打包为资源
+            //       type: 'asset/resource',
+            //     },
+            //   ],// 使用 Webpack 的内置功能处理文本文件
+            //   generator: {
+            //     filename: 'texts/[name][ext]', // 自定义输出路径和文件名
+            //   },
+            // },
             {
               test: /\.svg$/,
               use: [

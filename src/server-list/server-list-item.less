@@ -23,6 +23,9 @@
           line-height: 30px;
         }
       }
+      &-code {
+        white-space: nowrap;
+      }
     }
     .@{clsPrefix}-server-join {
       button > span {
@@ -71,6 +74,10 @@
         color: #ffe96d;
       }
     }
+  }
+
+  .@{clsPrefix}-server-map.mobile {
+    flex-direction: column;
   }
 
   @media (max-width: 600px) {
