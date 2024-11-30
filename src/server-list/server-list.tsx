@@ -10,6 +10,7 @@ import { throttle } from 'lodash-es';
 import { IServerInfo, IServerListProps } from './interface';
 import ServerListItem from './server-list-item';
 import ServerListDetail from './server-list-detail';
+import { serverMap } from '.';
 
 import './server-list.less';
 
@@ -17,7 +18,7 @@ const { Search } = Input;
 
 const getServerItem: (serverList: IServerInfo['server'][], playersList: IServerInfo['players'][]) => CollapseProps['items'] = (serverList, playersList) => {
   return serverList.map((list: IServerInfo['server'], index) => ({
-    key: list.name,
+    key: index,
     label: <ServerListItem {...list} />,
     children: <ServerListDetail list={playersList[index]} />,
     showArrow: false,
@@ -38,7 +39,6 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
   });
 
   const fetchServerList = useCallback(throttle(() => {
-    console.log('111')
     setButtonLoading(true);
     axios.get('/api/all')
     .then((serverData) => {
@@ -71,34 +71,18 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
   useEffect(() => {
     // 先清空下search内容
     setInputVal('');
-    switch (activeTab) {
-      case 'all':
-        handleSearchClear();
-        break;
-      case 'multi':
-        // 多人多特服务器
-        setServerList(serverDataCopy.current.serverList.slice(0, 5));
-        setPlayersList(serverDataCopy.current.playersList.slice(0, 5));
-        break;
-      case 'third-party':
-        // 三方多特服务器
-        setServerList(serverDataCopy.current.serverList.slice(5, 12));
-        setPlayersList(serverDataCopy.current.playersList.slice(5, 12));
-        break;
-      case 'infinite':
-        // 无限火力服务器
-        setServerList(serverDataCopy.current.serverList.slice(12, 21));
-        setPlayersList(serverDataCopy.current.playersList.slice(12, 21));
-        break;
-      case 'master':
-        // 写实专家服务器
-        setServerList(serverDataCopy.current.serverList.slice(21, 23));
-        setPlayersList(serverDataCopy.current.playersList.slice(21, 23));
-        break;
-      default:
-        break;
+    if (activeTab === 'all') {
+      handleSearchClear();
+    } else {
+      const range = serverMap.get(activeTab);
+      try {
+        setServerList(serverDataCopy.current.serverList.slice(range![0], range![0] + range!.length));
+        setPlayersList(serverDataCopy.current.playersList.slice(range![0], range![0] + range!.length));
+      } catch(e) {
+        console.error(e);
+        message.error('筛选服务器列表出错啦');
+      }
     }
-
     // 防止数据没拉回来之前做筛选不进入更新逻辑
   }, [activeTab, isLoading, buttonLoading]);
 

@@ -26,7 +26,7 @@
   border-radius: 10px 0px 0px 10px;
   margin-left: 30px;
   opacity: 0.85;
-  max-height: 244px;
+  max-height: fit-content;
   .@{clsPrefix}-icon {
     margin: 0 10px;
   }
@@ -41,6 +41,7 @@
 
 .@{clsPrefix}-server-list {
   flex: 1;
+  overflow-x: hidden;
   &-content {
     width: 100%;
   }
