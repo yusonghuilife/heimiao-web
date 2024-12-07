@@ -50,7 +50,7 @@ const Announcement: React.FC<IAnnouncementProps> = (props: IAnnouncementProps) =
     setTimeout(() => {
         axios.get('/api/info/changelog').then(res => {
           setDataLoaded(true);
-          const noticeDetail = res.data.body;
+          const noticeDetail = res.data.body.reverse();
           setNoticeItems(noticeDetail.map((notice: { title: string; content: string[] }, index: number) => ({
             key: index + 1,
             label: notice.title,
@@ -83,8 +83,7 @@ const Announcement: React.FC<IAnnouncementProps> = (props: IAnnouncementProps) =
   return (
     <Collapse
       items={noticeItems}
-      defaultActiveKey={['1', '2', '3']}
-      expandIcon={() => <CustomIcon src={BellList}/>}
+      defaultActiveKey={['1']}
       ghost
       style={{ userSelect: 'none' }}
     />

@@ -147,7 +147,6 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
       >
         <Collapse
           bordered={false}
-          defaultActiveKey={['1']}
           expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
           items={getServerItem(serverList, playersList)}
           className={`${clsPrefix}-server-list-content`}
