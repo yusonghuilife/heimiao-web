@@ -59,7 +59,7 @@
 }
 .@{clsPrefix}-header-announcement {
   opacity: 0;
-  transform: translateY(-100%);  // 元素从顶部滑出
+  transform: translateY(-100%);
   transition: opacity @transition-duration ease, transform @transition-duration ease;
   background-image: url('../asset/announce_bg.jpg');
   background-position: center;
@@ -69,12 +69,55 @@
   min-height: 400px;
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    z-index: 1;
+  }
+
+  .ant-collapse {
+    max-height: 500px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(26, 26, 26);
+      box-shadow : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    &::-webkit-scrollbar-thumb {
+      /*滚动条里面小方块*/
+      border-radius: 10px;
+      background : #fdf2e0;
+      opacity: 0.5;
+    }
+  }
+
+  .ant-collapse-header-text,
+  pre,
+  .ant-collapse-expand-icon,
+  * {
+    position: relative;
+    z-index: 2;
+  }
+
   .ant-collapse-header-text {
-    // 重写一下antd下字体颜色
     color: #f4f4f4;
   }
   pre {
     color: #f4f4f4;
+  }
+  .ant-collapse-expand-icon {
+    color: white;
   }
 }
 /* 向下滑入 */

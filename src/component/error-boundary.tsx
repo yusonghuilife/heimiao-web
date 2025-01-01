@@ -34,7 +34,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         status="500"
         title="500"
         subTitle="Sorry, something went wrong."
-        extra={<Button type="primary">刷新</Button>}
       />
     }
 

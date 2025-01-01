@@ -18,6 +18,7 @@ export interface IUserData {
   jockey_skeet_rate: number; // 空爆猴子率 
   joined_date: string;
   kdi: number;
+  save: number;
   last_login_time: number;
   married: 0 | 1;
   mate_name: string;
@@ -54,6 +55,7 @@ export const defaultData: IUserData = {
   jockey_skeet_rate: 0, // 空爆猴子率 
   joined_date: '1970/01/01 08:00:00', // 首次加入
   kdi: 0, // kdi
+  save: 0, // 救人数
   last_login_time: 0, // 最后登陆
   married: 0, // 是否jh
   mate_name: '',

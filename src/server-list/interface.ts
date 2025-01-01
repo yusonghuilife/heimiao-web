@@ -14,6 +14,7 @@ export interface IPlayer {
   score: number;
   duration: number;
   index: number;
+  highlight?: boolean;
 }
 
 export interface IServerInfo {

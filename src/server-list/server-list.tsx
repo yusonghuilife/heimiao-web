@@ -5,12 +5,13 @@ import { Button, Collapse, Input, message, Skeleton } from 'antd';
 import axios from 'axios';
 import { clsPrefix } from '../const';
 import dayjs from 'dayjs';
-import { throttle } from 'lodash-es';
+import { throttle, cloneDeep } from 'lodash-es';
 
 import { IServerInfo, IServerListProps } from './interface';
 import ServerListItem from './server-list-item';
 import ServerListDetail from './server-list-detail';
 import { serverMap } from '.';
+import { eventEmitter } from '../utils/event-emitter';
 
 import './server-list.less';
 
@@ -37,6 +38,11 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
     serverList,
     playersList,
   });
+
+  const handleRefresh = useCallback(() => {
+    fetchServerList();
+    eventEmitter.emit('refresh');
+  }, []);
 
   const fetchServerList = useCallback(throttle(() => {
     setButtonLoading(true);
@@ -95,8 +101,19 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
       return;
     }
     let searchServerIndex: number[] = [];
-    serverDataCopy.current.playersList.map((serverPlayers, serverIndex) => {
-      if (serverPlayers.some(player => (player.name.toLowerCase()).includes(inputVal.trim().toLowerCase()))) {
+    const playerRes: IServerInfo['players'][] = [];
+    const playersListCopy = cloneDeep(serverDataCopy.current.playersList);
+    playersListCopy.map((serverPlayers, serverIndex) => {
+      let isHighlight = false;
+      serverPlayers.forEach((player) => {
+        if (player.name.toLowerCase().includes(inputVal.trim().toLowerCase())) {
+          player.highlight = true;
+          isHighlight = true;
+        }
+      });
+      if (isHighlight) {
+        // push playersList
+        playerRes.push(playersListCopy[serverIndex]);
         searchServerIndex.push(serverIndex);
       }
     });
@@ -104,11 +121,10 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
       message.error('未查询到玩家在黑喵服务器中');
       return;
     }
+    // push serverList
     const serverRes: IServerInfo['server'][] = [];
-    const playerRes: IServerInfo['players'][] = [];
     searchServerIndex.map(index => {
       serverRes.push(serverDataCopy.current.serverList[index]);
-      playerRes.push(serverDataCopy.current.playersList[index]);
     });
     setServerList(serverRes);
     setPlayersList(playerRes);
@@ -138,7 +154,7 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
           onClear={handleSearchClear}
           value={inputVal}
         />
-        <Button loading={buttonLoading} onClick={fetchServerList}>刷新</Button>
+        <Button loading={buttonLoading} onClick={handleRefresh}>刷新</Button>
       </div>
       <Skeleton
         loading={isLoading}
@@ -147,7 +163,6 @@ const ServerList: React.FC<IServerListProps> = (props: IServerListProps) => {
       >
         <Collapse
           bordered={false}
-          defaultActiveKey={['1']}
           expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
           items={getServerItem(serverList, playersList)}
           className={`${clsPrefix}-server-list-content`}

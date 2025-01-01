@@ -2,9 +2,9 @@ import { Tag, Button } from "antd";
 import { clsPrefix } from "../const";
 import { IServerListItem } from "./interface";
 import { useCallback, useMemo } from "react";
+import { isMobileDevice } from "../utils";
 
 import './server-list-item.less';
-import { isMobileDevice } from "../utils";
 
 
 const ServerListItem: React.FC<IServerListItem> = (props: IServerListItem) => {
@@ -21,7 +21,7 @@ const ServerListItem: React.FC<IServerListItem> = (props: IServerListItem) => {
     if (players < max_players / 2) {
       return 'less';
     }
-    if (players === max_players) {
+    if (players >= max_players) {
       return 'full';
     }
     return 'half';
@@ -32,12 +32,12 @@ const ServerListItem: React.FC<IServerListItem> = (props: IServerListItem) => {
       <div className={`${clsPrefix}-server-name ${playerNumStatus}`}>{name}</div>
       <div className={`${clsPrefix}-server-players`}>
         <span className={`${clsPrefix}-server-cur-players ${playerNumStatus}`}>{players}</span>
-        <span className={`${clsPrefix}-server-separator`}>/</span>
-        <span className={`${clsPrefix}-server-max-players`}>{max_players}</span>
+        <span className={`${clsPrefix}-server-separator ${players >= max_players && max_players > 0 ? 'full' : ''}`}>/</span>
+        <span className={`${clsPrefix}-server-max-players ${players >= max_players && max_players > 0 ? 'full' : ''}`}>{max_players}</span>
       </div>
       <div className={`${clsPrefix}-server-map ${isMobileDevice() ? 'mobile' : ''}`}>
         <div className={`${clsPrefix}-server-map-name`}>
-          <Tag color={"#f50"}>{mapname}</Tag>
+          <Tag className={`${clsPrefix}-server-map-tag ${mapname?.startsWith('(官图)') ? 'official' : ''}`}>{mapname}</Tag>
         </div>
         <div className={`${clsPrefix}-server-map-code`}>{map}</div>
       </div>

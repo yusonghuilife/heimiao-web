@@ -2,13 +2,15 @@ import React from 'react';
 import { Table } from 'antd';
 import type { TableProps } from 'antd';
 import { IPlayer } from './interface';
-import './server-list-detail.less';
 import { clsPrefix } from '../const';
+
+import './server-list-detail.less';
 
 interface DataType {
   name: string;
   score: number;
   duration: number;
+  highlight?: boolean;
 }
 
 interface IServerListDetail {
@@ -20,6 +22,7 @@ const columns: TableProps<DataType>['columns'] = [
     title: '昵称',
     dataIndex: 'name',
     key: 'name',
+    render: (name, record) => record.highlight ? <span className='highlight'>{name}</span> : name
   },
   {
     title: '分数',
