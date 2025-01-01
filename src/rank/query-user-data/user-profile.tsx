@@ -39,8 +39,11 @@ const UserProfile: React.FC<IUserProfileProps> = (props: IUserProfileProps) => {
       </Col>
     </Row>
     <Row>
-      <Col span={24}>
+      <Col span={12}>
         <div>KDI<span>{data.kdi}</span></div>
+      </Col>
+      <Col span={12}>
+        <div>救人数<span>{data.save}</span></div>
       </Col>
     </Row>
     <Row>

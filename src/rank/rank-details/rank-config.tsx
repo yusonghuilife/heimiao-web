@@ -35,6 +35,12 @@ export interface IDeathDataType {
   name: string;
   death: number;
 }
+export interface ISaveDataType {
+  rank: number;
+  key: React.Key;
+  name: string;
+  save: number;
+}
 
 export interface IExpDataType {
   rank: number;
@@ -78,6 +84,7 @@ export type DataType = ITotalDataType
   & ICiKillDataType
   & IIncapDataType
   & IDeathDataType
+  & ISaveDataType
 ;
 
 
@@ -206,6 +213,21 @@ export const deathColumns: TableColumnsType<IDeathDataType> = [
   }
 ];
 
+export const saveColumns: TableColumnsType<ISaveDataType> = [
+  {
+    title: '排名',
+    dataIndex: 'rank',
+  },
+  {
+    title: '昵称',
+    dataIndex: 'name',
+  },
+  {
+    title: '救人数',
+    dataIndex: 'save',
+  }
+];
+
 export const totalColumns: TableColumnsType<ITotalDataType> = [
   {
     title: '排名',
@@ -223,6 +245,11 @@ export const totalColumns: TableColumnsType<ITotalDataType> = [
           >总分
           </Tooltip>,
     dataIndex: 'total_score',
+  },
+  {
+    title: '时长',
+    dataIndex: 'play_time',
+    render: (text) => `${parseFloat((text / 3600).toFixed(1))}h`,
   }
 ];
 
@@ -267,4 +294,8 @@ export const rankMapRest = [{
   name: 'death',
   title: '死亡榜',
   columns: deathColumns,
+}, {
+  name: 'save',
+  title: '救人榜',
+  columns: saveColumns,
 }];
