@@ -240,7 +240,7 @@ export const totalColumns: TableColumnsType<ITotalDataType> = [
   {
     title: <Tooltip
             placement="top"
-            title="经验值 + 特感击杀数 + 普感击杀数"
+            title="经验值 + 特感击杀数 + 救人数"
             color="rgba(0, 0, 0, 0.6)"
           >总分
           </Tooltip>,
