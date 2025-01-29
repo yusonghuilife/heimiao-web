@@ -102,9 +102,8 @@ export const expColumns: TableColumnsType<IExpDataType> = [
     dataIndex: 'exp',
   },
   {
-    title: '时长',
-    dataIndex: 'play_time',
-    render: (text) => `${parseFloat((text / 3600).toFixed(1))}h`,
+    title: '救人',
+    dataIndex: 'save',
   },
 ];
 
@@ -223,7 +222,7 @@ export const saveColumns: TableColumnsType<ISaveDataType> = [
     dataIndex: 'name',
   },
   {
-    title: '救人数',
+    title: '救人',
     dataIndex: 'save',
   }
 ];

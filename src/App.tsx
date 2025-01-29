@@ -3,7 +3,7 @@ import { clsPrefix } from './const';
 import HeimiaoHeader from './header';
 import HeimiaoServerList from './server-list';
 import RankTab from './rank/rank-tab';
-import BgVideo from './asset/bg.mp4';
+import BgVideo from './asset/bg1.mp4';
 import BgImg from './asset/bg.png';
 import { useLayoutEffect, useRef } from 'react';
 import { isMobileDevice } from './utils';
