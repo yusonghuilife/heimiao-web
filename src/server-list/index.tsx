@@ -20,7 +20,7 @@ const HeimiaoServerList: React.FC = () => {
   }, [activeMenu]);
 
   useEffect(() => {
-    fetch('/server-category.txt')
+    fetch(`/server-category.txt?ts=${Date.now()}`)
       .then(res => res.text())
       .then(res => {
         const newServerListItems = ServerListItems.slice();
