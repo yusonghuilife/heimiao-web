@@ -6,6 +6,8 @@ import ServerList from './server-list';
 import ErrorBoundary from '../component/error-boundary';
 import ListAllIcon from '../asset/list_all.png';
 import { CustomIcon } from '../component/icon';
+import { useMouseActivity } from '../components/MouseActivityDetector';
+
 import './index.less';
 
 export const serverMap = new Map<string, Array<number>>();
@@ -13,6 +15,7 @@ export const serverMap = new Map<string, Array<number>>();
 const HeimiaoServerList: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState('all');
   const [menuInfo, setMenuInfo] = useState(ServerListItems);
+  const isActive = useMouseActivity();
   
   // @ts-ignore
   const handleMenuSelect = useCallback(({ item, key, keyPath, selectedKeys, domEvent }) => {
@@ -53,11 +56,11 @@ const HeimiaoServerList: React.FC = () => {
           defaultSelectedKeys={['all']}
           mode="inline"
           items={menuInfo}
-          className={`${clsPrefix}-server-menu`}
+          className={`${clsPrefix}-server-menu ${!isActive ? 'inactive' : ''}`}
           onSelect={handleMenuSelect}
           selectedKeys={[activeMenu]}
         />
-        <div className={`${clsPrefix}-server-list`}>
+        <div className={`${clsPrefix}-server-list ${!isActive ? 'inactive' : ''}`}>
           <ServerList activeTab={activeMenu} />
         </div>
       </ErrorBoundary>

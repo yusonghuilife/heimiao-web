@@ -5,6 +5,7 @@ import RankTable from './rank-details/rank-table';
 import { DataType, IRankType, rankMap, rankMapRest } from './rank-details/rank-config';
 import { QueryUserInfo } from './query-user-data';
 import { clsPrefix } from '../const';
+import { useMouseActivity } from '../components/MouseActivityDetector';
 import './rank-tab.less';
 
 const personalInfoTab = {
@@ -26,13 +27,16 @@ const generateTabList: () => TabsProps['items'] = () => {
 }
 
 const RankTab: React.FC = () => {
+  const isActive = useMouseActivity();
+  
   return (
     <Tabs
       defaultActiveKey='total'
       items={generateTabList()}
-      className={`${clsPrefix}-rank-tab`}
+      className={`${clsPrefix}-rank-tab ${!isActive ? 'inactive' : ''}`}
       indicator={{ size: 0 }}
-  />);
+    />
+  );
 }
 
 export default RankTab;

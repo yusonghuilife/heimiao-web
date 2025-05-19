@@ -11,7 +11,17 @@
   max-height: 81vh;
   height: fit-content;
   max-width: 440px;
-   &::-webkit-scrollbar {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  opacity: 0.85;
+  padding: 0 10px;
+  transition: background-color 0.5s ease-in-out;
+  
+  &.inactive {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  
+  &::-webkit-scrollbar {
     width: 8px;
     height: 5px;
   }
@@ -25,10 +35,6 @@
     background : #fdf2e0;
     opacity: 0.5;
   }
-  background-color: rgba(0, 0, 0, 0.75);
-  border-radius: 5px;
-  opacity: 0.85;
-  padding: 0 10px;
   .ant-tabs-nav::before {
     display: none !important;
   }
