@@ -63,6 +63,10 @@ function App() {
   const [isLocked, setIsLocked] = useState(() => localStorage.getItem(STORAGE_KEY) !== null);
   const firstVideoRef = useRef<HTMLVideoElement>(null);
   const secondVideoRef = useRef<HTMLVideoElement>(null);
+  const [isMouseInWindow, setIsMouseInWindow] = useState(true);
+  const [isMouseTimeoutActive, setIsMouseTimeoutActive] = useState(false);
+  const mouseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mouseLeaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const currentBgVideo = bgVideoList[bgVideoIndex].src;
   const nextBgVideo = nextVideoIndex !== null ? bgVideoList[nextVideoIndex].src : currentBgVideo;
@@ -121,6 +125,87 @@ function App() {
       nextVideo.removeEventListener('canplay', handleCanPlay);
     };
   }, [nextVideoIndex, activeVideo]);
+
+  // Add mouse presence handlers
+  useEffect(() => {
+    const handleMouseEnter = () => {
+      setIsMouseInWindow(true);
+      if (mouseTimeoutRef.current) {
+        clearTimeout(mouseTimeoutRef.current);
+      }
+      if (mouseLeaveTimeoutRef.current) {
+        clearTimeout(mouseLeaveTimeoutRef.current);
+        mouseLeaveTimeoutRef.current = null;
+      }
+      mouseTimeoutRef.current = setTimeout(() => {
+        setIsMouseTimeoutActive(false);
+        const currentActiveVideo = activeVideo === 'first' ? firstVideoRef.current : secondVideoRef.current;
+        if (currentActiveVideo) {
+          currentActiveVideo.play().catch((error: Error) => {
+            console.warn('Failed to resume video playback:', error);
+          });
+        }
+      }, 3000);
+    };
+
+    const handleMouseLeave = () => {
+      if (mouseLeaveTimeoutRef.current) {
+        clearTimeout(mouseLeaveTimeoutRef.current);
+      }
+      mouseLeaveTimeoutRef.current = setTimeout(() => {
+        setIsMouseInWindow(false);
+        setIsMouseTimeoutActive(true);
+        const videos = [firstVideoRef.current, secondVideoRef.current];
+        videos.forEach(video => {
+          if (video) {
+            video.pause();
+          }
+        });
+      }, 3000);
+    };
+
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (mouseTimeoutRef.current) {
+        clearTimeout(mouseTimeoutRef.current);
+      }
+      if (mouseLeaveTimeoutRef.current) {
+        clearTimeout(mouseLeaveTimeoutRef.current);
+      }
+    };
+  }, [activeVideo]);
+
+  // Modify visibility change handler to respect mouse presence
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const videos = [firstVideoRef.current, secondVideoRef.current];
+      if (document.hidden || !isMouseInWindow || isMouseTimeoutActive) {
+        // Pause all videos when page is hidden or mouse is out
+        videos.forEach(video => {
+          if (video) {
+            video.pause();
+          }
+        });
+      } else {
+        // Resume active video when page becomes visible and mouse is in
+        const currentActiveVideo = activeVideo === 'first' ? firstVideoRef.current : secondVideoRef.current;
+        if (currentActiveVideo) {
+          currentActiveVideo.play().catch((error: Error) => {
+            console.warn('Failed to resume video playback:', error);
+          });
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [activeVideo, isMouseInWindow, isMouseTimeoutActive]);
 
   return (
     <>
