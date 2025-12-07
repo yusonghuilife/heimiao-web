@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import axios from 'axios';
 import { DataType, IRankType } from './rank-config';
+import Rank2025Table from './rank-2025-table';
 
 export interface IRankTableProps {
   rankType: IRankType;
@@ -72,6 +73,10 @@ const RankTable: React.FC<IRankTableProps> = (props: IRankTableProps) => {
         //   expandIcon: () => null,
         // }}
       />
+      <div style={{ paddingBottom: '24px' }}>
+        <div style={{ marginBottom: '16px', fontSize: '14px', color: '#b9988a', textAlign: 'center' }}>2025历史排名</div>
+        <Rank2025Table />
+      </div>
     </>
   )
 };
