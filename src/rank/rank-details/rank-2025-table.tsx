@@ -24,7 +24,7 @@ export const defaultPageSize = 20;
 
 const fetchRank2025List = (start: number, end: number) => {
   // 直接请求 heimiao-api 服务器
-  return axios.get(`/api/rank2025?start=${start}&end=${end}`)
+  return axios.get(`http://45.125.45.95:20077/api/rank2025?start=${start}&end=${end}`)
 }
 
 const Rank2025Table: React.FC = () => {
